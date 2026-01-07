@@ -8,3 +8,9 @@ set -euo pipefail
 # The output should contain 11 lines.
 # Line 3 should be "It contains many lines, and there are some things you may want to do with each of them.".
 # Line 11 should be "We also should remember, when we go shopping, to get 4 items: oranges, cheese, bread, olives.".
+
+# match ,no space s/
+# \(capture group \) \([^ ]\
+# \(    \)
+
+sed 's/, \([^ ]\)/, \1/g' input.txt
