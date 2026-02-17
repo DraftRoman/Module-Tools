@@ -1,6 +1,5 @@
 import { program } from "commander";
 import { promises as fs } from "node:fs";
-import process from "node:process";
 
 program
   .name("myCat")
@@ -17,16 +16,15 @@ let lineNumber = 1;
 
 for (const filename of files) {
   const content = await fs.readFile(filename, "utf-8");
+  const lines = content.split("\n");
 
   if (opts.n) {
-    const lines = content.split("\n");
 
     for (const line of lines) {
       console.log(lineNumber + " " + line);
       lineNumber++;
     }
   } else if (opts.b) {
-    const lines = content.split("\n");
 
     for (const line of lines) {
       if (line.trim() !== "") {
