@@ -1,10 +1,9 @@
 import { program } from "commander";
 import { promises as fs } from "node:fs";
-import process from "node:process";
 
 program
-  .name("myLs")
-  .description("my ls clone")
+  .name("myWc")
+  .description("my wc clone")
   .option("-l", "line count")
   .option("-w", "words count")
   .option("-c", "character count")
@@ -26,7 +25,6 @@ let totalWords = 0;
 if (opts.l) {
   for (const file of files) {
     const content = await fs.readFile(file, "utf-8");
-    console.log(content);
     const lineCount = content.split("\n").length;
 
     totalLines += lineCount;
@@ -36,7 +34,6 @@ if (opts.l) {
 if (opts.w) {
   for (const file of files) {
     const content = await fs.readFile(file, "utf-8");
-    console.log(content);
 
     const wordCount = content.trim().split(/\s+/).length;
     totalWords += wordCount;
@@ -49,10 +46,7 @@ if (opts.c) {
     const content = await fs.readFile(file, "utf-8");
 
     totalChars += content.trim().length;
-    // const charList = content.trim().split(/\s+/);
-    // for (const char of charList) {
-    //   totalChars += char.length;
-    // }
+
   }
   console.log("Total characters:", totalChars);
 }
