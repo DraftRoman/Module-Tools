@@ -12,10 +12,6 @@ args = parser.parse_args()
 
 
 msg=" ".join(args.message)
-
-
-msg = " ".join(args.message)
-
 if args.animal is None:
     print(cowsay.cowsay(msg))
 else:
