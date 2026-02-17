@@ -1,11 +1,10 @@
 import { program } from "commander";
 import { promises as fs } from "node:fs";
-import process from "node:process";
 
 program
   .name("myLs")
   .description("my ls clone")
-  .option("-1", "one entry per line")
+  .option("-1, --one-per-line", "one entry per line")
   .option("-a", "show hidden files")
   .argument("[paths...]", "file or directory paths");
 
@@ -19,14 +18,14 @@ if (paths.length === 0) {
 }
 
 for (const path of paths) {
-  const entries = await fs.readdir(path);
+  const directoryItems = await fs.readdir(path);
 
-  for (const file of entries) {
+  for (const file of directoryItems) {
     if (!opts.a && file.startsWith(".")) {
       continue;
     }
 
-    if (opts["1"]) {
+    if (opts.onePerLine) {
       console.log(file);
     } else {
       console.log(file + " ");
