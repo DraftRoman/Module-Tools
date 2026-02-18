@@ -24,11 +24,11 @@ def main():
     totals= {"lines": 0, "words": 0, "chars": 0}
 
     no_flags = not args.l and not args.w and not args.c
-    width = 7
+    width = 8
 
     def format_output(counts, label):
         if no_flags:
-            return f"{counts['lines']:> {width}}{counts['words']:>{width}}{counts['chars']:>{width}} {label}"
+            return f"{counts['lines']:>{width}}{counts['words']:>{width}}{counts['chars']:>{width}} {label}"
 
         parts = []
         if args.l:
@@ -46,7 +46,7 @@ def main():
             with open(file_path, "rb") as f:
                 data = f.read()
         except OSError as err:
-            print(f"wc: cannot read file'{file_path}': {err}", file=sys.stderr)
+            print(f"wc: cannot read file' {file_path} ': {err}", file=sys.stderr)
             had_error = True
             continue
 
@@ -67,12 +67,9 @@ def main():
         print(format_output(counts, file_path))
 
     if len(args.paths) > 1:
-        no_flags = not args.l and not args.w and not args.c
+        print(format_output(totals, "total"))
 
-        if no_flags:
-            print(format_output(totals, "total"))
-
-        sys.exit(1 if had_error else 0)
+    sys.exit(1 if had_error else 0)
 
 if __name__ == "__main__":
     main()
