@@ -4,11 +4,8 @@ import os
 
 def show_files(files, show_hidden):
     for file in files:
-        if show_hidden:
-            print(file)
-        else:
-            if not file.startswith("."):
-                print(file)
+        if show_hidden or not file.startswith("."):
+             print(file)
 
 
 parser = argparse.ArgumentParser(
@@ -24,8 +21,6 @@ parser.add_argument("path", nargs="?", default=".", help="The directory to list"
 args = parser.parse_args()
 
 
-fn = args.path
-listDir = os.listdir(fn)
+directory_path = args.path
+listDir = os.listdir(directory_path)
 
-if fn != "":
-    show_files(listDir, args.a)
