@@ -7,24 +7,14 @@ def run(args):
 
         with open(file_path, "r") as f:
             lines = f.readlines()
-
-        if args.b:
             for line in lines:
-                if line.strip() != "":
-                    print(counter_number, line, end="")
+                prefix = ""
+                if args.n or (args.b and line.strip() != ""):
+                    prefix = counter_number
                     counter_number += 1
-                else:
-                    print(line, end="")
+                print(f"{prefix} {line}", end="")
 
-        elif args.n:
-            for line in lines:
-                print(counter_number, line, end="")
-                counter_number += 1
-
-        else:
-            for line in lines:
-                print(line, end="")
-
+ 
 
 def main():
     parser = argparse.ArgumentParser(
