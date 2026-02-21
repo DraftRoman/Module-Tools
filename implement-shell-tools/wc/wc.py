@@ -51,5 +51,12 @@ for path in args.path:
     else:
         print(lines, words, chars, path)
 
-if len(args.path) > 1 and not args.l and not args.w and not args.c:
-    print(lineCounter, wordCounter, charCounter, "total")
+if len(args.path) > 1:
+    if args.l:
+        print(lineCounter, "total")
+    elif args.w:
+        print(wordCounter, "total")
+    elif args.c:
+        print(charCounter, "total")
+    else:
+        print(lineCounter, wordCounter, charCounter, "total")
