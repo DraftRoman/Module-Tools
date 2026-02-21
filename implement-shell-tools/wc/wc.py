@@ -6,8 +6,6 @@ parser = argparse.ArgumentParser(
 )
 
 
-
-
 def read_file(file_path):
     with open(file_path, "r") as file:
         return file.read()
@@ -20,8 +18,6 @@ def count_text(text):
     return line_count, word_count, char_count
 
 
-
-
 lineCounter = 0
 wordCounter = 0
 charCounter = 0
@@ -31,7 +27,6 @@ parser.add_argument("-w", action="store_true", help="count words")
 parser.add_argument("-c", action="store_true", help="count characters")
 parser.add_argument("path", nargs="+", default=".", help="The file to count")
 args = parser.parse_args()
-
 
 
 for path in args.path:

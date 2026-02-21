@@ -14,7 +14,6 @@ def run(args):
                     counter_number += 1
                 print(f"{prefix} {line}", end="")
 
- 
 
 def main():
     parser = argparse.ArgumentParser(

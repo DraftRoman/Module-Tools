@@ -5,7 +5,7 @@ import os
 def show_files(files, show_hidden):
     for file in files:
         if show_hidden or not file.startswith("."):
-             print(file)
+            print(file)
 
 
 parser = argparse.ArgumentParser(
@@ -23,4 +23,3 @@ args = parser.parse_args()
 
 directory_path = args.path
 listDir = os.listdir(directory_path)
-
