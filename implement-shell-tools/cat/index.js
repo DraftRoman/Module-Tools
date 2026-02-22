@@ -1,13 +1,26 @@
-import { promises as fs } from "node:fs";
+import { readFileSync } from "node:fs";
 
-async function cleanInput(listOfFiles) {
+function cleanInput(listOfFiles) {
 	let cleanLinesArr = [];
+
 	for (const file of listOfFiles) {
-		const grabbedText = await fs.readFile(file, "utf-8");
+		const grabbedText = readFileSync(file, "utf-8");
 		const splitLines = grabbedText.split("\n");
 		cleanLinesArr.push(...splitLines);
 	}
 	return cleanLinesArr;
+}
+
+const args = process.argv.slice(2);
+let flag;
+let restIsFiles;
+
+if (args[0] && args[0][0] === "-") {
+	flag = args[0];
+	restIsFiles = args.slice(1);
+} else {
+	flag = null;
+	restIsFiles = args;
 }
 
 function takeSpecifiedAction(cleanLinesArr, flag) {
@@ -32,3 +45,6 @@ function takeSpecifiedAction(cleanLinesArr, flag) {
 		}
 	}
 }
+
+const lines = cleanInput(restIsFiles);
+takeSpecifiedAction(lines, flag);
