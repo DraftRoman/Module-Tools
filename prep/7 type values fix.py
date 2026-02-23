@@ -38,7 +38,7 @@ class Laptop:
 def find_possible_laptops(laptops: List[Laptop], person: Person) -> List[Laptop]:
     possible_laptops = []
     for laptop in laptops:
-        if laptop.operating_system == person.preferred_operating_systems:
+        if laptop.operating_system in person.preferred_operating_systems:
             possible_laptops.append(laptop)
     return possible_laptops
 
