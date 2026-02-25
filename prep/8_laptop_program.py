@@ -78,7 +78,7 @@ def find_possible_laptops(laptops: List[Laptop], person: Person) -> Tuple[List[L
 
 def compare_counts_of_poss_and_others(possible_laptops: List[Laptop], other_laptops: List[Laptop], person: Person) -> None:
     if len(other_laptops) == 0:
-        print("The os you chose has the biggest availability.)")
+        print("The os you chose has the biggest availability.")
         return
     # counter to get obj
     other_laptops_counted_as_obj = Counter(laptop.operating_system for laptop in other_laptops)
@@ -86,7 +86,6 @@ def compare_counts_of_poss_and_others(possible_laptops: List[Laptop], other_lapt
     most_common_laptop = other_laptops_counted_as_obj.most_common(1)[0]
     
     if len(possible_laptops) < most_common_laptop[1]:
-        # print(f"There are more laptops available with {str(most_common_laptop[0])} than your preferred OS {person.preferred_operating_system.value}. Consider accepting that OS to increase your chances of getting a laptop.")
         print(f"There are more laptops available with {most_common_laptop[0].value} than your preferred OS {person.preferred_operating_system.value}. Consider accepting that OS to increase your chances of getting a laptop.")
     else:
         print("Your chosen os has the biggest availability.")

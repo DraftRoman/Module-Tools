@@ -5,5 +5,3 @@
 3 makes the code more specific and it is easier to understand what it is doing for 
  a junior/learner like me :)
 4 reduces errors
-
-

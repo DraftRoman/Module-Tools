@@ -58,3 +58,4 @@ laptops = [
 for person in people:
     possible_laptops = find_possible_laptops(laptops, person)
     print(f"Possible laptops for {person.name}: {possible_laptops}")
+    
