@@ -1,53 +1,26 @@
 import sys
 from pathlib import Path
 
-def calculateCounts(inputFiles):
-    return {
-        "lines": len(inputFiles.split("\n")) - 1,
-        "words": len(inputFiles.split()),
-        "bytes": len(inputFiles),
-    }
-
-# * `wc -l sample-files/3.txt`
-# * `wc -l sample-files/*`
-def countLines(listOfFiles):
+def countAll(listOfFiles, flag=None):
     for file in listOfFiles:
         content = Path(file).read_text(encoding="utf-8")
-
-        counts = calculateCounts(content)
-        print(f"{counts['lines']} {file}")
-
-# * `wc -w sample-files/3.txt`
-def countWords(listOfFiles):
-    for file in listOfFiles:
-        content = Path(file).read_text(encoding="utf-8")
-
-        # const wordsCounted = content.split(" ").filter(word => word !== "").length;
-        counts = calculateCounts(content)
-        print(f"{counts['words']} {file}")
-
-# * `wc -c sample-files/3.txt`
-def countBytes(listOfFiles):
-    for file in listOfFiles:
-        content = Path(file).read_text(encoding="utf-8")
-        counts = calculateCounts(content)
-        print(f"{counts['bytes']} {file}")
-
-# * `wc sample-files/*`
-def countAll(listOfFiles):
-    for file in listOfFiles:
-        content = Path(file).read_text(encoding="utf-8")
-        counts = calculateCounts(content)
-        print(f"{counts['lines']} {counts['words']} {counts['bytes']} {file}")
+        if flag == "-l":
+            print(f"{len(content.splitlines())} {file}")
+        elif flag == "-w":
+            print(f"{len(content.split())} {file}")
+        elif flag == "-c":
+            print(f"{len(content)} {file}")
+        else:
+            print(f"{len(content.splitlines())} {len(content.split())} {len(content)} {file}")
 
 argv = sys.argv[1:]
 files = [arg for arg in argv if not arg.startswith("-")]
 
 if "-l" in argv:
-    countLines(files)
+    countAll(files, "-l")
 elif "-w" in argv:
-    countWords(files)
+    countAll(files, "-w")
 elif "-c" in argv:
-    countBytes(files)
+    countAll(files, "-c")
 else:
     countAll(files)

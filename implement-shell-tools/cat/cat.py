@@ -6,10 +6,31 @@ def cleanInput(listOfFiles):
 
     for file in listOfFiles:
         grabbedText = Path(file).read_text(encoding="utf-8") 
-        splitLines = grabbedText.split("\n")
+        splitLines = grabbedText.splitlines()
         cleanLinesArr.extend(splitLines) 
     
     return cleanLinesArr
+
+def takeSpecifiedAction(cleanLinesArr, flag):
+    countingOnlyFullLines = 1
+
+    if flag not in (None, "-n", "-b"):
+        print("incorrect flag")
+        return
+
+    for line in cleanLinesArr: 
+        if not flag:
+            print(line)
+        elif flag == "-n":
+            print(f"{countingOnlyFullLines} {line}")
+            countingOnlyFullLines += 1
+        elif flag == "-b":
+            if line == "":
+                print("")
+            else:
+                print(f"{countingOnlyFullLines} {line}")
+                countingOnlyFullLines += 1
+
 
 args = sys.argv[1:]  
 flag = None
@@ -21,24 +42,6 @@ if len(args) > 0 and args[0] and args[0][0] == "-":
 else:
     flag = None
     restIsFiles = args
-
-def takeSpecifiedAction(cleanLinesArr, flag):
-    countingOnlyFullLines = 1
-
-    for file in cleanLinesArr: 
-        if not flag:
-            print(file)
-        elif flag == "-n":
-            print(f"{countingOnlyFullLines} {file}")
-            countingOnlyFullLines += 1
-        elif flag == "-b":
-            if file == "":
-                print("")
-            else:
-                print(f"{countingOnlyFullLines} {file}")
-                countingOnlyFullLines += 1
-        else:
-            print("incorrect flag")
 
 lines = cleanInput(restIsFiles)
 takeSpecifiedAction(lines, flag)
