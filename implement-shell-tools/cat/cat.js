@@ -18,7 +18,23 @@ const numberNonBlank = options.numberNonblank;
 const numberAll = options.number && !numberNonBlank;
 
 (async () => {
-  let lineNumber = 1; // continuous line numbering
+  let lineNumber = 1; 
+  
+  //  calculate total lines if using -n
+  let totalLines = 0;
+  if (numberAll) {
+    for (const path of filePaths) {
+      try {
+        const content = await fs.readFile(path, "utf-8");
+        const lines = content.split("\n");
+
+        totalLines += content.endsWith("\n") ? lines.length - 1 : lines.length;
+      } catch (err) {
+        console.error(`Error reading file "${path}": ${err.message}`);
+        process.exit(1);
+      }
+    }
+  }
 
   for (const path of filePaths) {
     try {
