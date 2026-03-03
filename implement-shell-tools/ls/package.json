@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "You should already be familiar with the `ls` command line tool.",
+  "main": "ls.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
