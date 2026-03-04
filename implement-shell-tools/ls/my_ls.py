@@ -50,6 +50,8 @@ for input_path in file_paths:
                     perms = format_permissions(entry_stat.st_mode)
                     size = str(entry_stat.st_size).rjust(6)
                     print(f"{perms}  {size}  {entry}")
+                elif force_single_column:
+                    print(entry)
                 else:
                     print(entry)  
 
