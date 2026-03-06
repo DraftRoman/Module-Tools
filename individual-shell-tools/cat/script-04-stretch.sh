@@ -5,6 +5,7 @@ set -euo pipefail
 # NOTE: This is a stretch exercise - it is optional.
 
 # TODO: Write a command to output the contents of all of the files in the helper-files directory to the terminal.
+cat  ../helper-files/helper-1.txt ../helper-files/helper-2.txt ../helper-files/helper-3.txt |awk '{print NR,$0}'
 # We also want to see the line numbers in the output, but we want line numbers not to reset at the start of each file.
 #
 # The output of this command should be something like:
