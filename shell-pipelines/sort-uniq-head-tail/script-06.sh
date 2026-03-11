@@ -5,3 +5,6 @@ set -euo pipefail
 # The input for this script is the events.txt file.
 # TODO: Write a command to show how many times anyone has entered and exited.
 # It should be clear from your script's output that there have been 5 Entry events and 4 Exit events.
+
+echo "Total Entry: $(grep 'Entry' events.txt | wc -l)"
+echo "Total Exit:  $(grep 'Exit' events.txt | wc -l)"
