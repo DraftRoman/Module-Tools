@@ -12,4 +12,4 @@ set -euo pipefail
 # I was tempted to take a bite of it.
 # But this seemed like a bad idea...
 
-cd ../helper-files && cat *.txt
+cat ../helper-files/*.txt
