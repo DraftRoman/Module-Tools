@@ -32,7 +32,10 @@ try {
     try {
       for await (const line of file.readLines()) {
         count.lines++;
-        count.words += line.trim().split(/\s+/).length;
+        const trimmed = line.trim();
+        if (trimmed.length > 0) {
+          count.words += trimmed.split(/\s+/).length;
+        }
       }
     } finally {
       await file.close();
