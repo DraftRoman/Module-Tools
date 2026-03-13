@@ -13,3 +13,8 @@ It must act the same as `ls` would, if run from the directory containing this RE
 Matching any additional behaviours or flags are optional stretch goals.
 
 We recommend you start off supporting just `-1`, then adding support for `-a`.
+
+*=======command for running the script===========
+python3 ls_py.py -1
+python3 ls_py.py -1 sample-files
+python3 ls_py.py -1 -a sample-files

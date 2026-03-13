@@ -1,4 +1,4 @@
-# Implement `cat`
+# Implement `cat` in python
 
 You should already be familiar with the `cat` command line tool.
 
@@ -15,3 +15,20 @@ It must act the same as `cat` would, if run from the directory containing this R
 Matching any additional behaviours or flags are optional stretch goals.
 
 We recommend you start off supporting no flags, then add support for `-n`, then add support for `-b`.
+
+*========commands for running the scripts========
+
+* No flags
+python cat.py sample-files/1.txt
+
+* Number every line (-n)
+python cat.py -n sample-files/1.txt
+
+* Display all files in directory(shell expands *.txt)
+python cat.py sample-files/*.txt
+
+* Number every line across multiple files(including empty ones)
+python cat.py -n sample-files/*.txt
+
+* Number non-empty lines only (-b)
+python cat.py -b sample-files/3.txt
