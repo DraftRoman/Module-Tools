@@ -16,3 +16,5 @@ Before running a script you should `cd` into the directory it's in.
 You should write all of your scripts assuming they're running inside the directory they're saved in.
 
 You can approach the folders in any order.
+
+
