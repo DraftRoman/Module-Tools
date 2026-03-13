@@ -20,8 +20,7 @@ try {
   const filePath = filePathArg || process.cwd();
   let files = await fs.readdir(filePath);
 
-  const currentDir = process.cwd();
-  const files = await fs.readdir(currentDir);
+  if (!options.a) files = files.filter((file) => !file.startsWith("."));
 
   if (options["1"]) {
     for (const file of files) {
