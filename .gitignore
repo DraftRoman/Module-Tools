@@ -1,1 +1,5 @@
 node_modules
+implement-cowsay/.venv
+**/package.json
+**/package-lock.json
+implement-cowsay/requirements.txt
