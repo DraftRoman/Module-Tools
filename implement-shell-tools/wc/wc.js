@@ -33,7 +33,18 @@ try {
 
     results[filePath] = count;
   }
-  console.log(results);
+
+  if (filePaths.length > 1) {
+    const total = { lines: 0, words: 0, bytes: 0 };
+    for (const file of Object.values(results)) {
+      total.lines += file.lines;
+      total.words += file.words;
+      total.bytes += file.bytes;
+    }
+    results["total"] = total;
+  }
+
+  console.table(results);
 } catch (err) {
   console.error(err.message);
 }
