@@ -4,6 +4,10 @@ import * as fs from "node:fs/promises";
 program
   .name("ls")
   .description("List directory contents")
+  .argument(
+    "[path]",
+    "The file path to process (defaults to current directory)",
+  )
   .option("-a", "Include directory entries whose names begin with a dot ('.').")
   .option("-1", "Force output to be one entry per line.");
 
@@ -11,6 +15,10 @@ program.parse();
 
 try {
   const options = program.opts();
+  const [filePathArg] = program.args;
+
+  const filePath = filePathArg || process.cwd();
+  let files = await fs.readdir(filePath);
 
   const currentDir = process.cwd();
   const files = await fs.readdir(currentDir);
