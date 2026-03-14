@@ -35,7 +35,7 @@ How many bits would you need in order to store the numbers between 0 and 1000 in
 Answer: 10 bits
 
 How can you test if a binary number is a power of two (e.g. 1, 2, 4, 8, 16, ...)?
-Answer: 2^n
+Answer: It can be tested if one of the bits in the value is one e.g 0100, 10, 100
 
 Convert the decimal number 14 to hex.
 Answer: E
