@@ -4,7 +4,7 @@ set -euo pipefail
 
 # TODO: Write a command to output the contents of all of the files inside the helper-files directory to the terminal.
 # Make sure you are only calling `cat` once.
-#
+cat ../helper-files/*
 # The output of this command should be:
 # Once upon a time...
 # There was a house made of gingerbread.

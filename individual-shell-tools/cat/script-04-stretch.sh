@@ -6,7 +6,7 @@ set -euo pipefail
 
 # TODO: Write a command to output the contents of all of the files in the helper-files directory to the terminal.
 # We also want to see the line numbers in the output, but we want line numbers not to reset at the start of each file.
-#
+cat ../helper-files/* | nl
 # The output of this command should be something like:
 # 1 Once upon a time...
 # 2 There was a house made of gingerbread.
