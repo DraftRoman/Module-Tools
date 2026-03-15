@@ -29,7 +29,7 @@ How many bits would you need in order to store the numbers between 0 and 255 inc
 Answer: 8
 
 How many bits would you need in order to store the numbers between 0 and 3 inclusive?
-Answer: 4
+Answer: 2
 
 How many bits would you need in order to store the numbers between 0 and 1000 inclusive?
 Answer: 10
@@ -47,10 +47,10 @@ Convert the hex number 386 to decimal.
 Answer:
 
 Convert the hex number B to decimal.
-Answer:902
+Answer: 11
 
 If reading the byte 0x21 as a number, what decimal number would it mean?
-Answer: 3
+Answer: 33
 
 If reading the byte 0x21 as an ASCII character, what character would it mean?
 Answer: !
