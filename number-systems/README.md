@@ -5,7 +5,11 @@ Do not convert any binary numbers to decimal when solving a question unless the 
 The goal of these exercises is for you to gain an intuition for binary numbers. Using tools to solve the problems defeats the point.
 
 Convert the decimal number 14 to binary.
-Answer: 1000 + 0100 + 0010 = 1110 = 8 + 4 + 2 = 14
+Answer: 2^4 = 16,
+so I should start with 2^3 = 8 (1000),
+14 - 8 = 6,
+6 - 2^2 (0100)= 2 (0010)
+14 = 1000 + 0100 + 0010 = 1110
 
 Convert the binary number 101101 to decimal:
 Answer: 2^5 + 2^3 + 2^2 + 2^0 = 32 + 8 + 4 + 1 = 45
@@ -14,7 +18,7 @@ Which is larger: 1000 or 0111?
 Answer: 1000 is larger because 1000 has more places
 
 Which is larger: 00100 or 01011?
-Answer: 01011 is larger because it has more places
+Answer: 01011 is larger because the leading number is 01 instead of 00, and they both have 5 bits.
 
 What is 10101 + 01010?
 Answer: 11111
@@ -23,10 +27,10 @@ What is 10001 + 10001?
 Answer: 100010
 
 What's the largest number you can store with 4 bits, if you want to be able to represent the number 0?
-Answer: 1111
+Answer: 1111 = 15
 
 How many bits would you need in order to store the numbers between 0 and 255 inclusive?
-Answer: 2^8 = 256. So, we need 7 bits. b0000000 = 0, and b1111111 = 255
+Answer: 2^8 = 256. So, we need 8 bits. b00000000 = 0, and b11111111 = 255
 
 How many bits would you need in order to store the numbers between 0 and 3 inclusive?
 Answer: 2 bits as 00 = 0, and 11 = 3
