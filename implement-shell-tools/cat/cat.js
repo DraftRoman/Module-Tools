@@ -1,76 +1,60 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-
+const fs = require("node:fs");
 //shared line counter across all files(matches cat -n)
 let globalLineCounter = 1;
 
 function printFile(filePath, options) {
-    try {
-        const content = fs.readFileSync(filePath, 'utf-8');
-        const lines = content.split('\n');
+  try {
+    const content = fs.readFileSync(filePath, "utf-8");
+    const lines = content.split("\n");
 
-        lines.forEach((line) => {
-            if(options.numberNonEmpty) {
-                //-b option: number non-empty lines
-                if(line.trim()) {
-                    process.stdout.write(
-                        `${String(globalLineCounter).padStart(6)}\t${line}\n`
-                    );
-                    globalLineCounter++;
-                } else {
-                    process.stdout.write('\n');
-                }
-            } else if(options.numberAll) {
-                //-n option: number all lines
-                process.stdout.write(
-                    `${String(globalLineCounter).padStart(6)}\t${line}\n`
-                );
-                globalLineCounter++;
-            } else {
-                //default: just print the line
-                process.stdout.write(line + '\n');
-            }
+    lines.forEach((line) => {
+      let prefix = "";
+
+      if (options.numberMode === "non-empty") {
+        //-b option: number non-empty lines
+        if (line.trim() !== "") {
+          prefix = `${String(globalLineCounter).padStart(6)}\t`;
+          globalLineCounter++;
+        }
+      } else if (options.numberMode === "all") {
+        prefix = `${String(globalLineCounter).padStart(6)}\t`;
+        globalLineCounter++;
+      }
+
+      process.stdout.write(`${prefix}${line}\n`);
     });
-
-    } catch (error) {
-        console.error(`Error reading file ${filePath}: ${error.message}`);
-    }
+  } catch (error) {
+    console.error(`cat: ${filePath}: ${error.message}`);
+  }
 }
 
 function main() {
-    const args = process.argv.slice(2);
-    const options = {
-        numberNonEmpty: false,
-        numberAll: false,
-    };
-    const filePatterns = [];
+  const args = process.argv.slice(2);
 
-    args.forEach((arg) => {
-        if(arg === '-n') {
-            options.numberAll = true;
-        } else if(arg === '-b') {
-            options.numberNonEmpty = true;
-        } else {
-            filePatterns.push(arg);
-        }
-    });
-    // -b takes precedence over -n
-    if(options.numberNonEmpty) {
-        options.numberAll = false;
+  const options = {
+    numberMode: "off",
+  };
+
+  const files = [];
+  args.forEach((arg) => {
+    if (arg === "-n") {
+      options.numberMode = "all";
+    } else if (arg === "-b") {
+      options.numberMode = "non-empty";
+    } else {
+      files.push(arg);
     }
+  });
 
-    if(filePatterns.length === 0) {
-        console.log("cat: missing file operand");
-        process.exit(1);
-    }
+  if (files.length === 0) {
+    console.log("cat: missing file operand");
+    process.exit(1);
+  }
 
-    const files = filePatterns;
-
-    files.forEach((file) => {
-        const resolvedPath = path.resolve(process.cwd(), file);
-        printFile(resolvedPath, options);
-    });
-    }
+  files.forEach((file) => {
+    printFile(file, options);
+  });
+}
 
 main();
