@@ -15,6 +15,7 @@ function listDirectory(dirPath, showAll, onePerLine) {
     }
   } catch (error) {
     console.error(`Error reading directory ${dirPath}: ${error.message}`);
+    process.exitCode = 1;
   }
 }
 function main() {
@@ -29,23 +30,27 @@ function main() {
   if (directories.length === 0) {
     directories = [process.cwd()];
   }
-  //If a directory is specified, list that directory
   directories.forEach((arg, index) => {
     try {
       const stats = fs.statSync(arg);
 
       if (stats.isDirectory()) {
         //Print header if multiple directories are listed
-        if (directories.length > 1) console.log(`${arg}:`);
+        if (directories.length > 1) {
+          console.log(`${arg}:`)
+        };
         listDirectory(arg, showAll, onePerLine);
         //add a blank line between directory listings if there are multiple directories
-        if (directories.length > 1 && index < directories.length - 1)
-          console.log("");
+        if (directories.length > 1 && index < directories.length - 1){
+          console.log(""); 
+        }
+          
       } else {
         console.log(arg); // single file
       }
     } catch (error) {
       console.error(`Error accessing ${arg}: ${error.message}`);
+      process.exitCode = 1;
     }
   });
 }

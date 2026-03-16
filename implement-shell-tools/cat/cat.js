@@ -11,16 +11,14 @@ function printFile(filePath, options) {
     lines.forEach((line) => {
       let prefix = "";
 
-      if (options.numberMode === "non-empty") {
-        //-b option: number non-empty lines
-        if (line.trim() !== "") {
+      const shouldNumber = 
+        options.numberMode === "all" ||
+        (options.numberMode === "non-empty" && line.trim() !== "");
+
+        if (shouldNumber) {
           prefix = `${String(globalLineCounter).padStart(6)}\t`;
           globalLineCounter++;
         }
-      } else if (options.numberMode === "all") {
-        prefix = `${String(globalLineCounter).padStart(6)}\t`;
-        globalLineCounter++;
-      }
 
       process.stdout.write(`${prefix}${line}\n`);
     });
