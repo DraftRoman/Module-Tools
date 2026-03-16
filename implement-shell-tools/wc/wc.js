@@ -62,6 +62,7 @@ function main() {
       printCounts(file, counts, options);
     } catch (error) {
       console.error(`Error reading file ${file}: ${error.message}`);
+      process.exitCode = 1;
     }
   });
 
