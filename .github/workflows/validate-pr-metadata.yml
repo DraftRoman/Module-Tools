@@ -1,18 +1,20 @@
 name: Validate PR Metadata
+
 on:
   pull_request_target:
-    types:
-      - labeled
-      - unlabeled
-      - opened
-      - edited
-      - reopened
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
-  validate_pr_metadata:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: CodeYourFuture/actions/validate-pr-metadata@main
-        with:
+
+      - name: Validate PR metadata
+        uses: CodeYourFuture/pr-metadata-validator@v1
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
