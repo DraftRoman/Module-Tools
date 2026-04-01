@@ -2,6 +2,14 @@
 
 set -euo pipefail
 
+awk '{sum = 0; for (i = 3; i <= NF; i++) sum += $i; print $1, sum}' scores-table.txt
+Ahmed 15
+Basia 37
+Mehmet 32
+Leila 1
+Piotr 61
+Chandra 18
+
 # NOTE: This is a stretch exercise - it is optional.
 
 # TODO: Write a command to output just the names of each player along with the total of adding all of that player's scores.

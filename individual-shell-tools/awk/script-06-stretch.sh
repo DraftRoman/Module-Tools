@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -euo pipefail
+$ awk '{number += $3} END {print number}' scores-table.txt
+54
 
 # NOTE: This is a stretch exercise - it is optional.
 

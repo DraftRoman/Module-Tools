@@ -8,3 +8,15 @@ set -euo pipefail
 # The output should contain 11 lines.
 # Line 3 should be "It contains many lines, and there are some things you may want to do with each of them.".
 # Line 11 should be "We also should remember, when we go shopping, to get 4 items: oranges, cheese, bread, olives.".
+$ sed -E 's/,([^ ])/,\1/g' input.txt
+This is a sample file for experimenting with sed.
+
+it contains many lines, and there are some things you may want to do with each of them.
+
+We will include some score information:
+37 Alisha
+15 Jacob
+7 Pietro
+3 Katya
+
+We also should remember, when we go shopping, to get 4 items: oranges, cheese, bread, olives.
