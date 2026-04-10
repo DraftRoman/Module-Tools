@@ -14,7 +14,18 @@ const options = program.opts();
 const path = program.args[0];
 
 try {
-    const content = await fs.readFile(path, "utf-8");
+    let content = await fs.readFile(path, "utf-8");
+    const lines = content.split("\n");
+    if (options.numberNonblank) {
+    let lineNumber = 1;
+        content = lines.map(line => {
+            if (line.trim() === "") return line;
+            return `${lineNumber++} ${line}`;
+        }).join("\n");
+    } else if (options.number) {
+        content = lines.map((line, index) => `${index + 1} ${line}`).join("\n");
+    }
+    
     console.log(content);
 } catch (err) {
     console.error(`Error reading file: ${err.message}`);
