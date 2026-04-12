@@ -15,7 +15,6 @@ const options = program.opts();
 const folderPath = program.args[0] || "./";
 const dotsArray = [".", ".."];
 const files = await fs.readdir(folderPath);
-const hiddenFiles = dotsArray.concat(files.filter(file => file.startsWith(".")));
 let visibleFiles = options.all ? dotsArray.concat(files) : files.filter(file => !file.startsWith("."));
 const coloredFiles = [];
 
