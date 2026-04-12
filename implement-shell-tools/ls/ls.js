@@ -11,12 +11,15 @@ program
   
 program.parse();
 
-
+const options = program.opts();
 const folderPath = program.args[0] || "./";
+const dotsArray = [".", ".."];
 const files = await fs.readdir(folderPath);
+const hiddenFiles = dotsArray.concat(files.filter(file => file.startsWith(".")));
+let visibleFiles = options.all ? dotsArray.concat(files) : files.filter(file => !file.startsWith("."));
 const coloredFiles = [];
 
-for (const file of files) {
+for (const file of visibleFiles) {
     const fullPath = `${folderPath}/${file}`;
     const stats = await fs.stat(fullPath, (err, stats) => {
         if (err)
@@ -26,9 +29,19 @@ for (const file of files) {
     });
     if (stats.isDirectory()) {
         coloredFiles.push(chalk.blue(file));
+    } else if (file.startsWith("."))
+{
+        coloredFiles.push(chalk.yellow(file));
     } else {
         coloredFiles.push(file);
     }
 }
 
-console.log(coloredFiles.join(" "));
+if (options.column) {
+    for (const file of coloredFiles) {
+        console.log(file);
+    }
+}
+else {
+    console.log(coloredFiles.join(" "));
+}
