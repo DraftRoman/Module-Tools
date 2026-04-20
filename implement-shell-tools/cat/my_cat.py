@@ -11,7 +11,6 @@ parser.add_argument("-n", "--number", action="store_true", help="number all line
 parser.add_argument("-b", "--number-nonblank", action="store_true", help="number non-empty lines")
 
 args = parser.parse_args()
-print(args)
 line_number = 1
 
 try:
